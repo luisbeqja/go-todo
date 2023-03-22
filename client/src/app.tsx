@@ -1,26 +1,41 @@
 import { useEffect, useState } from 'preact/hooks';
 import axios from 'axios';
+import { getTodos } from './scripts/api';
 
 export function App() {
-  const [count, setCount] = useState(0);
+  const [inputs, setInputs] = useState<any>({});
 
-  useEffect(() => {
-/*     axios
-      .post('/api/create', {
-        title: 'test',
-        description: 'description',
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      }); */
-  }, []);
+  const handleChange = (event: any) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values: any) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+
+    getTodos(inputs);
+  };
 
   return (
     <>
-      <p class="read-the-docs">{count}</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="title"
+          value={inputs.title || ''}
+          onChange={handleChange}
+          placeholder={'title'}
+        />
+        <input
+          type="text"
+          name="description"
+          value={inputs.description || ''}
+          onChange={handleChange}
+          placeholder={'description'}
+        />
+        <input type="submit" />
+      </form>
     </>
   );
 }

@@ -7,6 +7,7 @@ import (
 )
 
 func TodoCreate(c *gin.Context) {
+	config.DB.AutoMigrate(&models.TodoItem{})
 	var todo models.TodoItem
 	c.BindJSON(&todo)
 	config.DB.Create(&todo)

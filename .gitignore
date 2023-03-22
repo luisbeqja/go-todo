@@ -3,4 +3,4 @@ client/.DS_Store
 .DS_Store
 
 # Server
-server/database.db
+server/database.db 
