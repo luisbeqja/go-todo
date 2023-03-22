@@ -19,7 +19,7 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", nil)
 	})
-	router.GET("/api", func(c *gin.Context) {
+	router.GET("/todos", func(c *gin.Context) {
 		controllers.TodoGet(c)
 	})
 	router.POST("/create", func(c *gin.Context) {
